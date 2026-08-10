@@ -1,0 +1,9 @@
+<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>StudyMind V1.3</title>
+<style>body{font-family:Tahoma;background:#09101f;color:#eef3ff;margin:0;padding:20px}.wrap{max-width:850px;margin:auto}.card{background:#14213d;border:1px solid #2b3c5f;border-radius:18px;padding:22px;margin:15px 0}.status{font-size:22px;padding:15px;border-radius:12px;background:#20345b}button{background:#6f82ff;color:white;border:0;padding:12px 18px;border-radius:9px;margin:5px}pre{white-space:pre-wrap;color:#bac7df}</style>
+<div class="wrap"><div class="card"><h1>✦ StudyMind V1.3</h1><p>نسخة تجهيز النشر والاتصال الحقيقي بالـAI</p></div>
+<div class="card"><h2>🔌 اتصال AI</h2><div id="status" class="status">جاري الفحص...</div><button onclick="check()">اختبار الاتصال</button><button onclick="test()">إرسال طلب AI حقيقي</button><pre id="out"></pre></div>
+<div class="card"><h2>🔐 الأمان</h2><p>مفتاح API لا يظهر في الواجهة ولا يُرسل للمتصفح.</p><p>يُقرأ فقط من <b>OPENAI_API_KEY</b> على الـBackend.</p></div></div>
+<script>
+async function check(){let x=await(await fetch("/api/health")).json();status.textContent=x.aiStatus==="connected"?"🟢 AI Connected":x.aiStatus==="offline"?"🔴 AI Offline":"🟠 AI Error";out.textContent=JSON.stringify(x,null,2)}
+async function test(){let r=await fetch("/api/ai-test",{method:"POST"}),x=await r.json();out.textContent=JSON.stringify(x,null,2);check()}check();
+</script>
