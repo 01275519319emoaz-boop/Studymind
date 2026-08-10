@@ -1,0 +1,11 @@
+{
+  "name": "studymind-v1-3-deploy-ready",
+  "version": "1.3.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
